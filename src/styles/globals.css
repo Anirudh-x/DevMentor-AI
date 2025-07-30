@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%; /* Slate-900 */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 160 84% 39%; /* Emerald-500 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 47% 95%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 222 47% 95%;
+    --muted-foreground: 222 10% 50%;
+    --accent: 174 62% 40%; /* Teal-500 */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 15% 90%;
+    --input: 222 15% 90%;
+    --ring: 160 84% 39%;
+    --radius: 0.5rem;
+
+    /* Sidebar Custom */
+    --sidebar-background: 222 47% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 160 84% 39%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 174 62% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 222 15% 90%;
+    --sidebar-ring: 174 62% 40%;
+  }
+
+  .dark {
+    /* Dark Mode */
+    --background: 222 47% 11%; /* Slate-900 */
+    --foreground: 210 20% 98%; /* Slate-100 */
+    --card: 222 47% 11%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 160 84% 39%; /* Emerald-500 */
+    --primary-foreground: 210 20% 98%;
+    --secondary: 222 47% 18%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 222 47% 18%;
+    --muted-foreground: 210 10% 60%;
+    --accent: 174 62% 40%; /* Teal-500 */
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 160 84% 39%;
+
+    /* Sidebar Custom */
+    --sidebar-background: 222 47% 18%; /* Slate-800 */
+    --sidebar-foreground: 210 20% 98%; /* Slate-100 */
+    --sidebar-primary: 160 84% 39%;    /* Emerald-500 */
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 174 62% 40%;    /* Teal-500 */
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 222 47% 20%;
+    --sidebar-ring: 174 62% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Document } from '@langchain/core/documents';
+
 
 // const apiKey = process.env.GEMINI_API_KEY;
 
@@ -54,21 +56,39 @@ export const aiSummarizedCommit = async (diff: string) => {
 
   return response.response.text();
 }
+export async function summariseCode(doc: Document) {
+  // const summary = await aiSummarizedCommit(doc.pageContent);
+  // return summary;
 
-console.log(await aiSummarizedCommit(`
-  diff --git a/src/lib/auth-client.ts b/src/lib/auth-client.ts
-index f07a6d6..97720d5 100644
---- a/src/lib/auth-client.ts
-+++ b/src/lib/auth-client.ts
-@@ -2,7 +2,7 @@ import { polarClient } from "@polar-sh/better-auth"
- import { createAuthClient } from "better-auth/react"
- export const authClient = createAuthClient({
-     /** The base URL of the server (optional if you're using the same domain) */
--    // baseURL: "https://aether-talk-snowy.vercel.app",
--    baseURL: "http://localhost:3000",
-+    baseURL: "https://aether-talk-snowy.vercel.app",
-+    // baseURL: "http://localhost:3000",
-     plugins: [polarClient()]
- })
-\ No newline at end of file
-  `));
+  console.log("Getting summary for doc:", doc.metadata.source);
+
+  try {
+    const code = doc.pageContent.slice(0, 10000);
+    const response = await model.generateContent([
+      `
+    You are an professional expert programmer and extremely intelligent senior software engineer who specialises in onboarding junior software engineers onto projects.
+    You are onboarding a junior software engineer and explaining to them the purpose of th ${doc.metadata.source} file.
+    `,
+      `Here is the code: \n\n${code}\n`,
+      `Give a summary no more than 100 words of the code above`,
+    ]);
+
+    return response.response.text();
+  } catch (error) {
+    return ''
+  }
+
+
+}
+
+
+export async function generateEmbedding(summary: string) {
+  const model = genAI.getGenerativeModel({
+    model: "text-embedding-004"
+  })
+  const result = await model.embedContent(summary)
+  const embedding = result.embedding;
+  return embedding.values;
+}
+
+// console.log(await generateEmbedding("This is a test summary for embedding generation. It should be concise and informative."));

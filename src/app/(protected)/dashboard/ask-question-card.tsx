@@ -6,13 +6,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Textarea } from '@/components/ui/textarea';
 import useProject from '@/hooks/use-project'
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { askQuestion } from './actions';
 import { readStreamableValue } from 'ai/rsc';
 import { file } from 'zod';
 import CodeReferences from "./code-references";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
+import useRefetch from "@/hooks/use-refetch";
 
 
 const AskQuestionCard = () => {
@@ -43,6 +44,8 @@ const AskQuestionCard = () => {
     setLoading(false)
   }
 
+  const refetch = useRefetch()
+
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
@@ -63,6 +66,7 @@ const AskQuestionCard = () => {
                 }, {
                   onSuccess: () => {
                     toast.success("Saved answer !")
+                    refetch()
                   },
                   onError: () => {
                     toast.error("Failed to save answer !")

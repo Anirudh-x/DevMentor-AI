@@ -4,7 +4,7 @@ export default async function Home() {
   
   return (
     <div>
-      Test
+      Route to /dashboard
     </div>
   );
 }

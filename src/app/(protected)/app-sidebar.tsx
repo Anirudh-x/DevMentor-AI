@@ -1,7 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
+import { 
+  Sidebar, 
+  SidebarContent, 
+  SidebarGroup, 
+  SidebarGroupContent, 
+  SidebarGroupLabel, 
+  SidebarHeader, 
+  SidebarMenu, 
+  SidebarMenuButton, 
+  SidebarMenuItem, 
+  useSidebar 
+} from "@/components/ui/sidebar";
 import useProject from "@/hooks/use-project";
 import { cn } from "@/lib/utils";
 import { Bot, CreditCard, LayoutDashboard, Plus, Presentation } from "lucide-react";
@@ -60,6 +71,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>
             Application
           </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map(item => {
